@@ -59,7 +59,13 @@ router.route('/login')
 
 
   try{
-    res.json(await usercontroller.login(req.body));
+    var result=await usercontroller.login(req.body);
+    //console.log("From router" +result)
+
+    // if(typeof(result)!=Object){
+    //   res.status(500).json({"Error":"Invalid creds"});
+    // }
+    res.json(result)
    }catch(error){
     next(error)
    }
@@ -77,6 +83,24 @@ router.route('/getdetails/:userid')
   
   try{
     res.json(await usercontroller.getuserbyid(req.params.userid));
+   }catch(error){
+    next(error)
+   }
+
+
+
+
+
+})
+
+
+router.route('/adminlogin')
+.post(async (req,res,next)=>{
+
+
+  
+  try{
+    res.json(await usercontroller.adminlogin(req.body));
    }catch(error){
     next(error)
    }
