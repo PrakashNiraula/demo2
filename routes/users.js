@@ -112,6 +112,24 @@ router.route('/adminlogin')
 })
 
 
+router.route('/getallusers')
+.post(async (req,res,next)=>{
+
+
+  
+  try{
+    res.json(await usercontroller.getallusers());
+   }catch(error){
+    next(error)
+   }
+
+
+
+
+
+})
+
+
 
 
 

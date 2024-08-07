@@ -123,6 +123,28 @@ db.getuserbyid=(userid)=>{
 
 
 
+db.getallusers=()=>{
+
+    return new Promise(async(resolve,reject)=>{
+        try{
+         conn.query("select * from users",((error,res)=>{
+                    if (error){
+                        reject(error);
+                    }      
+            resolve(res);
+         }))
+
+        }catch(error){
+            reject(error);
+        }
+    })
+
+
+
+
+}
+
+
 
 
 module.exports=db;
