@@ -125,11 +125,28 @@ router.route('/getallusers')
 
 
 
-
-
 })
 
 
+
+router.route('/deleteuser/:id')
+.post(async(req,res,next)=>{
+  try{
+    res.json(await usercontroller.deleteuserbyid(req.params.id))
+  }catch(error){
+    next(error);
+  }
+})
+
+
+router.route('/updateuser/:id')
+.post(async(req,res,next)=>{
+  try{
+    res.json(await usercontroller.updateuserbyid(req.params.id))
+  }catch(error){
+    next(error);
+  }
+})
 
 
 

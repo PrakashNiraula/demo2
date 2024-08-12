@@ -16,10 +16,10 @@ db.registeruser=(data)=>{
                         reject(error);
                     }      
             resolve(res);
-         }))
+         }));
 
         }catch(error){
-            reject(error);
+            reject(error)
         }
     })
 
@@ -121,6 +121,28 @@ db.getuserbyid=(userid)=>{
 
 }
 
+db.deleteuserbyid=(userid)=>{
+
+    return new Promise(async(resolve,reject)=>{
+        try{
+         conn.query("delete from users where id=?",[userid],((error,res)=>{
+                    if (error){
+                        reject(error);
+                    }      
+            resolve(res);
+         }))
+
+        }catch(error){
+            reject(error);
+        }
+    })
+
+
+
+
+}
+
+
 
 
 db.getallusers=()=>{
@@ -137,6 +159,36 @@ db.getallusers=()=>{
         }catch(error){
             reject(error);
         }
+    })
+
+
+
+
+}
+
+
+db.updateuserbyid=(userdata,id)=>{
+
+    return new Promise((resolve,reject)=>{
+
+try{
+
+
+    conn.query("update user set firstname=?,lastname=?, company=?,email=? where id=?",[userdata.firstname,userdata.lastname,userdata.company,userdata.email,id],(error,result)=>{
+
+        if(error) reject(error)
+
+            return resolve(result);
+
+
+    })
+
+            }catch(error){
+                reject(error);
+            }
+
+
+
     })
 
 
